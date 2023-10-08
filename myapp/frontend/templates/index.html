@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My App</title>
+	</head>
+	<body>
+		{% if is_logged_in %}
+		<button>로그아웃</button>
+		{% else %}
+		<button>로그인</button>
+		{% endif %}
+
+		<button>게임 만들기</button>
+		<h2>게임 목록</h2>
+		<div style="overflow-y: scroll; height: 300px">
+			<!-- 예시로 게임 목록 아이템. 실제 구현시 반복문으로 생성 -->
+			<div>게임 1</div>
+			<div>게임 2</div>
+			<div>게임 3</div>
+			<!-- ... -->
+		</div>
+	</body>
+</html>
