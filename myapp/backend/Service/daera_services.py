@@ -1,5 +1,5 @@
 from Model.daera_tables import Player, AllTransaction, GameInfo, ResultOfPlayer
-from Repository import (
+from Repository.daera_repositories import (
     PlayerRepository,
     TransactionRepository,
     GameInfoRepository,
@@ -11,6 +11,7 @@ from daera_schema import (
     GameInfoInput,
     ResultOfPlayerInput,
 )
+from uuid import UUID
 
 
 class PlayerService:

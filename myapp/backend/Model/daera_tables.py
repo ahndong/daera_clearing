@@ -2,8 +2,10 @@ from datetime import datetime
 from enum import Enum
 from sqlmodel import Field, SQLModel, create_engine
 from uuid import UUID, uuid4
+import strawberry
 
 
+@strawberry.enum
 class TxType(str, Enum):
     buyin = "buyin"
     endchip = "endchip"

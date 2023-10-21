@@ -19,6 +19,7 @@ from daera_schema import (
     ResultOfPlayerType,
 )
 from uuid import UUID
+from typing import Optional
 
 
 @strawberry.type
