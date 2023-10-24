@@ -16,39 +16,39 @@ class TxType(str, Enum):
 
 class Player(SQLModel, table=True):
     id: UUID = Field(default_factory=uuid4, primary_key=True)
-    nickName: str
-    totalBuyin: float
-    totalOut: float
-    netScore: float
-    noOfGames: int
-    getBbozziRatio: float
-    setBbozziRatio: float
+    nickname: str
+    totalbuyin: float
+    totalout: float
+    netscore: float
+    noofgames: int
+    getbbozziratio: float
+    setbbozziratio: float
 
 
 class AllTransaction(SQLModel, table=True):
     id: UUID = Field(default_factory=uuid4, primary_key=True)
-    playerId: UUID = Field(foreign_key="player.id")
-    transactionType: TxType
+    playerid: UUID = Field(foreign_key="player.id")
+    transactiontype: TxType
     amount: float
     time: datetime = Field(default=datetime.now)
 
 
 class GameInfo(SQLModel, table=True):
     id: UUID = Field(default_factory=uuid4, primary_key=True)
-    netPlayer: int
-    netBuyin: float
-    netGameFee: float
-    netBbozzi: float
-    start: datetime = Field(default=datetime.now)
-    finish: datetime
-    playTimeMin: int
+    netPlayer: int = Field()
+    netBuyin: float = Field(default=0.0)
+    netGamefee: float = Field(default=0.0)
+    netBbozzi: float = Field(default=0.0)
+    startAt: datetime = Field(default=datetime.now)
+    finishAt: datetime = Field(None)
+    playtimeMin: int = Field(None)
 
 
 class ResultOfPlayer(SQLModel, table=True):
     id: UUID = Field(default_factory=uuid4, primary_key=True)
-    gameInfoId: UUID = Field(foreign_key="gameinfo.id")
-    playerId: UUID = Field(foreign_key="player.id")
-    buyIn: float
-    chipOut: float
-    actualResult: float
-    rankOnGame: int
+    gameinfoid: UUID = Field(foreign_key="gameinfo.id")
+    playerid: UUID = Field(foreign_key="player.id")
+    buyin: float
+    chipout: float
+    actualresult: float
+    rankongame: int

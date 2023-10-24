@@ -10,13 +10,13 @@ DROP TABLE IF EXISTS ResultOfPlayer CASCADE;
 -- 1. 플레이어table
 CREATE TABLE Player (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    nickName TEXT NOT NULL,
-    totalBuyin NUMERIC NOT NULL,
-    totalOut NUMERIC NOT NULL,
-    netScore NUMERIC NOT NULL,
-    noOfGames INTEGER NOT NULL,
-    getBbozziRatio NUMERIC NOT NULL,
-    setBbozziRatio NUMERIC NOT NULL
+    nickname TEXT NOT NULL,
+    totalbuyin NUMERIC NOT NULL,
+    totalout NUMERIC NOT NULL,
+    netscore NUMERIC NOT NULL,
+    noofgames INTEGER NOT NULL,
+    getbbozziratio NUMERIC NOT NULL,
+    setbbozziratio NUMERIC NOT NULL
 );
 
 -- 2. 트랜젝션table
@@ -24,8 +24,8 @@ CREATE TYPE TxType AS ENUM ('buyin', 'endchip', 'setbbozzi', 'getbbozzi', 'gamef
 
 CREATE TABLE AllTransaction (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    playerId UUID REFERENCES Player(id),
-    transactionType TxType NOT NULL,
+    playerid UUID REFERENCES Player(id),
+    transactiontype TxType NOT NULL,
     amount NUMERIC NOT NULL,
     time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -34,21 +34,21 @@ CREATE TABLE AllTransaction (
 CREATE TABLE GameInfo (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     netPlayer INTEGER NOT NULL,
-    netBuyin NUMERIC NOT NULL,
-    netGameFee NUMERIC NOT NULL,
-    netBbozzi NUMERIC NOT NULL,
+    netbuyin NUMERIC NOT NULL,
+    netgamefee NUMERIC NOT NULL,
+    netbbozzi NUMERIC NOT NULL,
     start TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     finish TIMESTAMP NOT NULL,
-    playTimeMin INTEGER NOT NULL
+    playtimemin INTEGER NOT NULL
 );
 
 -- 4. 결과table
 CREATE TABLE ResultOfPlayer (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    gameInfoId UUID NOT NULL REFERENCES GameInfo(id),
-    playerId UUID NOT NULL REFERENCES Player(id),
-    buyIn NUMERIC NOT NULL,
-    chipOut NUMERIC NOT NULL,
-    actualResult NUMERIC NOT NULL,
-    rankOnGame INTEGER NOT NULL
+    gameinfoid UUID NOT NULL REFERENCES GameInfo(id),
+    playerid UUID NOT NULL REFERENCES Player(id),
+    buyin NUMERIC NOT NULL,
+    chipout NUMERIC NOT NULL,
+    actualresult NUMERIC NOT NULL,
+    rankongame INTEGER NOT NULL
 );

@@ -9,9 +9,11 @@ from daera_schema import (
     PlayerInput,
     AllTransactionInput,
     GameInfoInput,
+    GameInfoType,
     ResultOfPlayerInput,
 )
 from uuid import UUID
+from datetime import datetime
 
 
 class PlayerService:
@@ -71,9 +73,31 @@ class TransactionService:
 class GameInfoService:
     @staticmethod
     async def add_gameinfo(gameinfo_data: GameInfoInput):
-        gameinfo = GameInfo(**gameinfo_data.dict())
+        # gameinfo = GameInfo(**gameinfo_data.dict())
+        # gameinfo = GameInfo(gameinfo_data.dict())
+        # gameinfo = GameInfo(vars(gameinfo_data))
+        # gameinfo = GameInfo(gameinfo_data.__dict__)
+
+        gameinfo = GameInfo()
+        gameinfo.netPlayer = gameinfo_data.net_player
+        gameinfo.netBuyin = gameinfo_data.net_buyin
+        gameinfo.netGamefee = gameinfo_data.net_gamefee
+        gameinfo.netBbozzi = gameinfo_data.net_bbozzi
+        gameinfo.finishAt = gameinfo_data.finish_at
+        gameinfo.playtimeMin = gameinfo_data.playtime_min
+        gameinfo.startAt = datetime.now()
+
         await GameInfoRepository.create(gameinfo)
-        return gameinfo
+        return GameInfoType(
+            id=gameinfo.id,
+            net_player=gameinfo.netPlayer,
+            net_buyin=gameinfo.netBuyin,
+            net_gamefee=gameinfo.netGamefee,
+            net_bbozzi=gameinfo.netBbozzi,
+            start_at=gameinfo.startAt,
+            finish_at=gameinfo.finishAt,
+            playtime_min=gameinfo.playtimeMin,
+        )
 
     @staticmethod
     async def get_all_gameinfos():
