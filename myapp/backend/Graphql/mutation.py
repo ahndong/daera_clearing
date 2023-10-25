@@ -2,17 +2,17 @@ import strawberry
 from Service.note import NoteService
 from Service.daera_services import (
     PlayerService,
-    TransactionService,
+    TransactionLogService,
     GameInfoService,
-    ResultService,
+    ResultOfPlayerService,
 )
 
 from schema import NoteType, NoteInput
 from daera_schema import (
     PlayerType,
     PlayerInput,
-    AllTransactionType,
-    AllTransactionInput,
+    TransactionLogType,
+    TransactionLogInput,
     GameInfoType,
     GameInfoInput,
     ResultOfPlayerType,
@@ -51,19 +51,19 @@ class Mutation:
     # AllTransaction Mutations
     @strawberry.mutation
     async def create_transaction(
-        self, transaction_data: AllTransactionInput
-    ) -> AllTransactionType:
-        return await TransactionService.add_transaction(transaction_data)
+        self, transaction_data: TransactionLogInput
+    ) -> TransactionLogType:
+        return await TransactionLogService.add_transactionlog(transaction_data)
 
     @strawberry.mutation
     async def delete_transaction(self, transaction_id: UUID) -> str:
-        return await TransactionService.delete(transaction_id)
+        return await TransactionLogService.delete(transaction_id)
 
     @strawberry.mutation
     async def update_transaction(
-        self, transaction_id: UUID, transaction_data: AllTransactionInput
+        self, transaction_id: UUID, transaction_data: TransactionLogInput
     ) -> str:
-        return await TransactionService.update(transaction_id, transaction_data)
+        return await TransactionLogService.update(transaction_id, transaction_data)
 
     # GameInfo Mutations
     @strawberry.mutation
@@ -85,14 +85,14 @@ class Mutation:
     async def create_result(
         self, result_data: ResultOfPlayerInput
     ) -> ResultOfPlayerType:
-        return await ResultService.add_result(result_data)
+        return await ResultOfPlayerService.add_result(result_data)
 
     @strawberry.mutation
     async def delete_result(self, result_id: UUID) -> str:
-        return await ResultService.delete(result_id)
+        return await ResultOfPlayerService.delete(result_id)
 
     @strawberry.mutation
     async def update_result(
         self, result_id: UUID, result_data: ResultOfPlayerInput
     ) -> str:
-        return await ResultService.update(result_id, result_data)
+        return await ResultOfPlayerService.update(result_id, result_data)

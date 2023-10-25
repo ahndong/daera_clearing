@@ -36,6 +36,7 @@ class NoteRepository:
             note = result.scalars().first()
             note.name = note_data.name
             note.description = note_data.description
+            note.modified_at = note_data.modified_at
 
             query = (
                 sql_update(Note)

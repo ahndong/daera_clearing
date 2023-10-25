@@ -6,15 +6,15 @@ from Service.note import NoteService
 
 from Service.daera_services import (
     PlayerService,
-    TransactionService,
+    TransactionLogService,
     GameInfoService,
-    ResultService,
+    ResultOfPlayerService,
 )
 
 from schema import NoteType
 from daera_schema import (
     PlayerType,
-    AllTransactionType,
+    TransactionLogType,
     GameInfoType,
     ResultOfPlayerType,
 )
@@ -45,14 +45,14 @@ class Query:
     async def get_player_by_id(self, id: UUID) -> Optional[PlayerType]:
         return await PlayerService.get_player_by_id(id)
 
-    # AllTransaction Queries
+    # TransactionLog Queries
     @strawberry.field
-    async def get_all_transactions(self) -> List[AllTransactionType]:
-        return await TransactionService.get_all_transactions()
+    async def get_all_transactionlog(self) -> List[TransactionLogType]:
+        return await TransactionLogService.get_all_transactionlog()
 
     @strawberry.field
-    async def get_transaction_by_id(self, id: UUID) -> Optional[AllTransactionType]:
-        return await TransactionService.get_transaction_by_id(id)
+    async def get_transactionlog_by_id(self, id: UUID) -> Optional[TransactionLogType]:
+        return await TransactionLogService.get_transactionlog_by_id(id)
 
     # GameInfo Queries
     @strawberry.field
@@ -66,8 +66,8 @@ class Query:
     # ResultOfPlayer Queries
     @strawberry.field
     async def get_all_results(self) -> List[ResultOfPlayerType]:
-        return await ResultService.get_all_results()
+        return await ResultOfPlayerService.get_all_results()
 
     @strawberry.field
     async def get_result_by_id(self, id: UUID) -> Optional[ResultOfPlayerType]:
-        return await ResultService.get_result_by_id(id)
+        return await ResultOfPlayerService.get_result_by_id(id)

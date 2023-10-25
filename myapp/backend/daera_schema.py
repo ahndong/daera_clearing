@@ -2,47 +2,52 @@ import strawberry
 from uuid import UUID
 from datetime import datetime
 from Model.daera_tables import TxType
+from typing import Optional
 
 
 @strawberry.type
 class PlayerType:
     id: UUID
     nickname: str
-    totalbuyin: float
-    totalout: float
-    netscore: float
-    noofgames: int
-    getbbozziratio: float
-    setbbozziratio: float
+    total_buyin: float = 0.0
+    total_out: float = 0.0
+    net_score: float = 0.0
+    no_of_games: int = 0
+    get_bbozzi_ratio: float = None
+    set_bbozzi_ratio: float = None
+    created_at: Optional[datetime] = None
+    modified_at: Optional[datetime] = None
 
 
 @strawberry.input
 class PlayerInput:
     nickname: str
-    totalbuyin: float
-    totalout: float
-    netscore: float
-    noofgames: int
-    getbbozziratio: float
-    setbbozziratio: float
+    total_buyin: float = 0.0
+    total_out: float = 0.0
+    net_score: float = 0.0
+    no_of_games: int = 0
+    get_bbozzi_ratio: float = None
+    set_bbozzi_ratio: float = None
 
 
 @strawberry.type
-class AllTransactionType:
+class TransactionLogType:
     id: UUID
     playerid: UUID
     transactiontype: TxType
     amount: float
-    time: datetime
+    created_at: Optional[datetime] = None
+    modified_at: Optional[datetime] = None
 
 
 @strawberry.input
-class AllTransactionInput:
+class TransactionLogInput:
     playerid: UUID
     transactiontype: TxType
     amount: float
 
 
+# 아래에서 각 Optional이 있는 이유는 create 시에는 반환하는 GameInfoType에 각 해당 값이 있을 필요가 없기 때문
 @strawberry.type
 class GameInfoType:
     id: UUID
@@ -50,9 +55,11 @@ class GameInfoType:
     net_buyin: float
     net_gamefee: float
     net_bbozzi: float
-    start_at: datetime
-    finish_at: datetime
+    start_at: Optional[datetime] = None
+    finish_at: Optional[datetime] = None
     playtime_min: int
+    created_at: Optional[datetime] = None
+    modified_at: Optional[datetime] = None
 
 
 @strawberry.input
@@ -61,7 +68,8 @@ class GameInfoInput:
     net_buyin: float
     net_gamefee: float
     net_bbozzi: float
-    finish_at: datetime
+    start_at: Optional[datetime] = None
+    finish_at: Optional[datetime] = None
     playtime_min: int
 
 
@@ -74,13 +82,17 @@ class ResultOfPlayerType:
     chipout: float
     actualresult: float
     rankongame: int
+    created_at: Optional[datetime] = None
+    modified_at: Optional[datetime] = None
 
 
 @strawberry.input
 class ResultOfPlayerInput:
-    gameinfoid: UUID
-    playerid: UUID
+    gameinfo_id: UUID
+    player_id: UUID
     buyin: float
     chipout: float
-    actualresult: float
-    rankongame: int
+    actual_result: float
+    rank_on_game: int
+    created_at: Optional[datetime] = None
+    modified_at: Optional[datetime] = None
