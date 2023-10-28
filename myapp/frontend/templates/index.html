@@ -18,6 +18,14 @@
 			<div>게임 2</div>
 			<div>게임 3</div>
 			<!-- ... -->
+
+			<div style="overflow-y: scroll; height: 300px">
+				<!-- 게임 목록 동적 생성 -->
+				{% for gameinfo in gameinfos %}
+				<div>{{ gameinfo.name }}</div>
+				<!-- 'name'은 실제 필드에 따라 변경되어야 함 -->
+				{% endfor %}
+			</div>
 		</div>
 	</body>
 </html>
