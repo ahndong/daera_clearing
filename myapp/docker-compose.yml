@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  db:
+    build:
+      context: ./docker_db
+    environment:
+      - POSTGRES_ID=${${ENV}_POSTGRES_ID}
+      - POSTGRES_PW=${${ENV}_POSTGRES_PW}
+    ports:
+      - "${${ENV}_POSTGRES_PORT}:${${ENV}_POSTGRES_PORT}"
+    env_file:
+      - .env_db_backend
+
+  backend:
+    build:
+      context: ./docker_backend
+    environment:
+      - POSTGRES_ID=${POSTGRES_ID}
+      - POSTGRES_PW=${POSTGRES_PW}
+      - POSTGRES_ENDPOINT=${POSTGRES_ENDPOINT}
+      - API_KEY=${${ENV}_API_KEY}
+    env_file:
+      - .env_db_backend
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./docker_frontend
+    env_file:
+      - .env_frontend
+    depends_on:
+      - backend
+# # 아래와 같이 cmd로 실행할 때에 ENV를 지정해서 실행해야 한다.
+# ENV=LOCAL docker-compose up
+#         or
+# export ENV=local/
+# docker-compose up
+#
+#
