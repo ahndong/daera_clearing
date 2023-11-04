@@ -5,6 +5,7 @@ services:
     build:
       context: ./docker_db
     environment:
+      - POSTGRES_DB_ARG: ${POSTGRES_DB_ARG}
       - POSTGRES_ID=${${ENV}_POSTGRES_ID}
       - POSTGRES_PW=${${ENV}_POSTGRES_PW}
     ports:
