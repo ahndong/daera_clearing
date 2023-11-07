@@ -1,6 +1,6 @@
-from Model.note import Note
+from Model.tables_note import Note
 from Repository.note import NoteRepository
-from schema import NoteInput, NoteType
+from schema_note import NoteInput, NoteType
 from datetime import datetime
 
 

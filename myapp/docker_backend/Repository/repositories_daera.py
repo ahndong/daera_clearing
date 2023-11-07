@@ -1,4 +1,4 @@
-from Model.daera_tables import Player, TransactionLog, GameInfo, ResultOfPlayer
+from Model.tables_daera import Player, TransactionLog, GameInfo, ResultOfPlayer
 from config import db
 from sqlalchemy.sql import select
 from sqlalchemy import update as sql_update, delete as sql_delete

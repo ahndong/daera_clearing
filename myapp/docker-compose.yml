@@ -30,20 +30,19 @@ services:
     depends_on:
       - db
 
-  # frontend:
-  #   build:
-  #     context: ./docker_frontend
-  #     args:
-  #       BACKEND_ENDPOINT_ARG: ${${ENV}_BACKEND_ENDPOINT}
-  #   env_file:
-  #     - .env_total
-  #   depends_on:
-  #     - backend
-  #
-  #
-  #
-  #
-  #
+  frontend:
+    build:
+      context: ./docker_frontend
+      args:
+        BACKEND_ENDPOINT_ARG: ${${ENV}_BACKEND_ENDPOINT}
+    env_file:
+      - .env_total
+    depends_on:
+      - backend
+#
+#
+#
+#
 # # 아래와 같이 cmd로 실행할 때에 ENV를 지정해서 실행해야 한다.
 # ENV=LOCAL docker-compose up
 #         or

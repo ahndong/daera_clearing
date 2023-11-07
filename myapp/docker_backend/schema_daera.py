@@ -1,7 +1,7 @@
 import strawberry
 from uuid import UUID
 from datetime import datetime
-from Model.daera_tables import TxType
+from Model.tables_daera import TxType
 from typing import Optional
 
 

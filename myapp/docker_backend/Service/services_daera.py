@@ -1,11 +1,11 @@
-from Model.daera_tables import Player, TransactionLog, GameInfo, ResultOfPlayer
-from Repository.daera_repositories import (
+from Model.tables_daera import Player, TransactionLog, GameInfo, ResultOfPlayer
+from Repository.repositories_daera import (
     PlayerRepository,
     TransactionLogRepository,
     GameInfoRepository,
     ResultRepository,
 )
-from daera_schema import (
+from schema_daera import (
     PlayerInput,
     PlayerType,
     TransactionLogInput,

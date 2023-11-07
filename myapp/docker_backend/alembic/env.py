@@ -8,10 +8,10 @@ from alembic import context
 from sqlalchemy import MetaData
 
 # 나의 모델 정의 모듈을 지정하기. 일단, 노트
-from Model.note import Note
+from Model.tables_note import Note
 
 # 두번째 모델 정의 모듈 지정
-from Model.daera_tables import SQLModel
+from Model.tables_daera import SQLModel
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

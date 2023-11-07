@@ -1,14 +1,14 @@
 import strawberry
-from Service.note import NoteService
-from Service.daera_services import (
+from Service.services_note import NoteService
+from Service.services_daera import (
     PlayerService,
     TransactionLogService,
     GameInfoService,
     ResultOfPlayerService,
 )
 
-from schema import NoteType, NoteInput
-from daera_schema import (
+from schema_note import NoteType, NoteInput
+from schema_daera import (
     PlayerType,
     PlayerInput,
     TransactionLogType,
