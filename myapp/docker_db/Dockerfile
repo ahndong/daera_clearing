@@ -34,3 +34,4 @@ ENV POSTGRES_PASSWORD=$POSTGRES_PASSWORD_ARG
 #   --build-arg POSTGRES_PASSWORD_ARG=postgres \
 #   --build-arg POSTGRES_DB_ARG=daera_clear \
 #   ./docker_db && docker run -d -p 5432:5432 --name my_running_db my_docker_db
+

@@ -44,6 +44,7 @@ services:
 #
 #
 # # 아래와 같이 cmd로 실행할 때에 ENV를 지정해서 실행해야 한다.
+# ENV는 LOCAL, DEV, STAGE, PROD 가 가능하다.
 # ENV=LOCAL docker-compose up
 #         or
 # export ENV=local/

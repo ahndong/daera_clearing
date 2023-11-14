@@ -43,16 +43,17 @@ def init_app():
 
 app = init_app()
 
-# ArgumentParser를 생성하여 설명을 추가합니다.
-parser = argparse.ArgumentParser(description="Run the FastAPI server.")
-# 'port'라는 인자를 추가하고, 기본값을 설정합니다.
-parser.add_argument("--port", type=int, default=8000, help="Port to listen on")
-# 입력된 인자를 파싱합니다.
-args = parser.parse_args()
 
 if __name__ == "__main__":
+    # ArgumentParser를 생성하여 설명을 추가합니다.
+    parser = argparse.ArgumentParser(description="Run the FastAPI server.")
+    # 'port'라는 인자를 추가하고, 기본값을 설정합니다.
+    parser.add_argument("--port", type=int, default=8888, help="Port to listen on")
+    # 입력된 인자를 파싱합니다.
+    args = parser.parse_args()
+
     uvicorn.run("main:app", host="localhost", port=args.port, reload=True)
 
 
 # 실행 시에는 다음 명령어로 실행을 한다.
-# python ./myapp/docker_backend/main.py --port 5000
+# python ./myapp/docker_backend/main.py --port 8888
